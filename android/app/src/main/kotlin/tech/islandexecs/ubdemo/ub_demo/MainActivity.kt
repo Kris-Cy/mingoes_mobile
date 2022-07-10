@@ -1,0 +1,6 @@
+package tech.islandexecs.mingoesmobile.mingoes_mobile
+
+import io.flutter.embedding.android.FlutterActivity
+
+class MainActivity: FlutterActivity() {
+}

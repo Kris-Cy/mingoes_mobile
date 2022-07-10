@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "626633218454",
+    "firebase_url": "https://ub-panic-button-default-rtdb.firebaseio.com",
+    "project_id": "ub-panic-button",
+    "storage_bucket": "ub-panic-button.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626633218454:android:9ce57102eb543faffee5b7",
+        "android_client_info": {
+          "package_name": "tech.islandexecs.mingoesmobile.mingoes_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626633218454-fdksc0qafstltn840pah0fuegaglm021.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCB8aUm_MXKje6SN1m0xqjCj1s-O8NId2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626633218454-fdksc0qafstltn840pah0fuegaglm021.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
