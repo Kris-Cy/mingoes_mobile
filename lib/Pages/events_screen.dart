@@ -38,66 +38,107 @@ class _EventsScreenState extends State<EventsScreen> {
     super.dispose();
   }
 
-  List<Event> _getEventsForDay(DateTime day) {
-    // Implementation example
-    return kEvents[day] ?? [];
-  }
-
-  List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
-    final days = daysInRange(start, end);
-
-    return [
-      for (final d in days) ..._getEventsForDay(d),
-    ];
-  }
-
-  void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
-    if (!isSameDay(_selectedDay, selectedDay)) {
-      setState(() {
-        _selectedDay = selectedDay;
-        _focusedDay = focusedDay;
-        _rangeStart = null; // Important to clean those
-        _rangeEnd = null;
-        _rangeSelectionMode = RangeSelectionMode.toggledOff;
-      });
-
-      //_selectedEvents.value = _getEventsForDay(selectedDay);
-    }
-  }
-
-  void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
-    setState(() {
-      _selectedDay = null;
-      _focusedDay = focusedDay;
-      _rangeStart = start;
-      _rangeEnd = end;
-      _rangeSelectionMode = RangeSelectionMode.toggledOn;
-    });
-
-    // `start` or `end` could be null
-    if (start != null && end != null) {
-      //_selectedEvents.value = _getEventsForRange(start, end);
-    } else if (start != null) {
-      //_selectedEvents.value = _getEventsForDay(start);
-    } else if (end != null) {
-      //_selectedEvents.value = _getEventsForDay(end);
-    }
-  }
+  // List<Event> _getEventsForDay(DateTime day) {
+  //   // Implementation example
+  //   return kEvents[day] ?? [];
+  // }
+  //
+  // List<Event> _getEventsForRange(DateTime start, DateTime end) {
+  //   // Implementation example
+  //   final days = daysInRange(start, end);
+  //
+  //   return [
+  //     for (final d in days) ..._getEventsForDay(d),
+  //   ];
+  // }
+  //
+  // void _onDaySelected(DateTime selectedDay, DateTime focusedDay) {
+  //   if (!isSameDay(_selectedDay, selectedDay)) {
+  //     setState(() {
+  //       _selectedDay = selectedDay;
+  //       _focusedDay = focusedDay;
+  //       _rangeStart = null; // Important to clean those
+  //       _rangeEnd = null;
+  //       _rangeSelectionMode = RangeSelectionMode.toggledOff;
+  //     });
+  //
+  //     //_selectedEvents.value = _getEventsForDay(selectedDay);
+  //   }
+  // }
+  //
+  // void _onRangeSelected(DateTime? start, DateTime? end, DateTime focusedDay) {
+  //   setState(() {
+  //     _selectedDay = null;
+  //     _focusedDay = focusedDay;
+  //     _rangeStart = start;
+  //     _rangeEnd = end;
+  //     _rangeSelectionMode = RangeSelectionMode.toggledOn;
+  //   });
+  //
+  //   // `start` or `end` could be null
+  //   if (start != null && end != null) {
+  //     //_selectedEvents.value = _getEventsForRange(start, end);
+  //   } else if (start != null) {
+  //     //_selectedEvents.value = _getEventsForDay(start);
+  //   } else if (end != null) {
+  //     //_selectedEvents.value = _getEventsForDay(end);
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: FunctionsAndInfo().getScreenHeight() * 0.595,
-      child: WebView(
-        javascriptMode: JavascriptMode.unrestricted,
-        initialUrl: 'https://www.calendarwiz.com/mobile.html?crd=univbah&nolognavbar=1',
-        onPageFinished: (finish) {
-          setState(() {
-            isCalendarLoaded = true;
-          });
-        },
+      child: Stack(
+        children: [
+          WebView(
+            javascriptMode: JavascriptMode.unrestricted,
+            initialUrl: 'https://www.calendarwiz.com/mobile.html?crd=univbah&nolognavbar=1',
+            onPageFinished: (finish) {
+              setState(() {
+                isCalendarLoaded = true;
+              });
+            },
+          ),
+          isCalendarLoaded ? Stack () : Stack(
+            children: [
+              // Image.asset(
+              //   'assets/images/ub_fit.png',
+              //   fit: BoxFit.cover,
+              //   height: FunctionsAndInfo().getScreenHeight(),
+              // ),
+              Container(
+                color: Colors.black.withOpacity(0.6),
+                child: Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Container(
+                          margin: EdgeInsets.all(20),
+                          height: FunctionsAndInfo().getScreenHeight() * 0.05,
+                          width: FunctionsAndInfo().getScreenHeight() * 0.05,
+                          child: CircularProgressIndicator(
+                            color: Colors.white,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.all(20),
+                          child: Text(
+                            "Loading Calendar...",
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    )
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
+
       // child: Column(
       //   children: [
       //     TableCalendar<Event>(

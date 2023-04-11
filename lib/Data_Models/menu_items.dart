@@ -30,7 +30,7 @@ List<MenuItems> menuList = [
   ]),
   // new MenuItems("Cafe", "Check out the food", "assets/images/ub_food.jpeg", [
   // ]),
-  new MenuItems("Events", "Keep up with campus events", "assets/images/ub_flag.jpeg", "assets/icons/events.png",[
+  new MenuItems("Events", "Keep up with campus events", "assets/images/ub_fit.png", "assets/icons/events.png",[
   ]),
   // new MenuItems("Updates", "Stay up to date with UB news", "assets/images/ub_people.jpeg", [
   // ]),

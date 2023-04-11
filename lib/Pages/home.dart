@@ -147,21 +147,21 @@ class _HomeState extends State<Home> {
                   //         pagination: SwiperPagination(),
                   //       ),
                   //     ),
-                  Container(
-                    margin: EdgeInsets.only(top: 30, left: 20),
-                    height: 60,
-                    color: Colors.transparent,
-                    child: GestureDetector(
-                      child: Icon(
-                        Icons.menu,
-                        color: Colors.white,
-                        size: 35,
-                      ),
-                      onTap: () {
-                        print('Navigation Button Pressed');
-                      },
-                    ),
-                  ),
+                  // Container(
+                  //   margin: EdgeInsets.only(top: 30, left: 20),
+                  //   height: 60,
+                  //   color: Colors.transparent,
+                  //   child: GestureDetector(
+                  //     child: Icon(
+                  //       Icons.menu,
+                  //       color: Colors.white,
+                  //       size: 35,
+                  //     ),
+                  //     onTap: () {
+                  //       print('Navigation Button Pressed');
+                  //     },
+                  //   ),
+                  // ),
                 ],
               ),
           Column(

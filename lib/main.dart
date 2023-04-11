@@ -57,13 +57,19 @@ class _MyHomePageState extends State<MyHomePage> {
       setState(() {
         timePassed = true;
         print("Has 3 seconds passed? $timePassed");
+
+        Navigator.of(context).pushReplacement(
+          new MaterialPageRoute(
+              builder: (context) => Home()
+          ),
+        );
       });
     });
-    Timer(Duration(seconds: 4), () {
-      setState(() {
-        primaryWidget = objects();
-      });
-    });
+    // Timer(Duration(seconds: 4), () {
+    //   setState(() {
+    //     primaryWidget = objects();
+    //   });
+    // });
 
     super.initState();
 
@@ -80,66 +86,92 @@ class _MyHomePageState extends State<MyHomePage> {
            screenHeight = MediaQuery.of(context).size.height;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Container(
-        color: Colors.white,
         child: Stack(
           children: [
-              Container(
-              height: screenHeight,
-              width: screenHeight,
-              decoration: BoxDecoration(
-                image: DecorationImage(
-                  image: AssetImage(
-                      "assets/images/ub_flag.jpeg"
+            Container(
+                  height: screenHeight,
+                  width: screenHeight,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                          "assets/images/ub_flag.jpeg"
+                      ),
+                      fit: BoxFit.cover,
+                    ),
                   ),
-                  fit: BoxFit.cover,
-                ),
-              ),
-              child: Container(
-                height: screenHeight,
-                width: screenWidth,
-                child: AnimatedOpacity(
-                  opacity: timePassed ? 1.0 : 0.0,
-                  duration: const Duration(milliseconds: 1500),
-                  child: BackdropFilter(
-                    filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-                      child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                  colors: [
-                                    Colors.white.withOpacity(0.3),
-                                    Colors.blue.shade600.withOpacity(0.9)
-                                  ],
-                                ),
-                              ),
-                              child: primaryWidget,
-                            ),
-                  ),
-                ),
-              ),
             ),
-            AnimatedPositioned(
-              duration: Duration(seconds: 1),
-              height: timePassed ? screenHeight * 0.35 : screenHeight,
-              top: timePassed ? screenHeight * 0.15 : 0.0,
-              curve: Curves.fastOutSlowIn,
-              child: Container(
-                width: screenWidth,
-                padding: timePassed ? EdgeInsets.symmetric(vertical: 10, horizontal: 0) : EdgeInsets.zero,
-                child: Center(
+            Center(
                   child: BounceIn(
                     child: Image.asset("assets/images/ub-logo.png"),
                   ),
                 ),
-              ),
-            ),
           ],
         ),
       ),
     );
+
+    // return Scaffold(
+    //   resizeToAvoidBottomInset: false,
+    //   body: Container(
+    //     color: Colors.white,
+    //     child: Stack(
+    //       children: [
+    //           Container(
+    //           height: screenHeight,
+    //           width: screenHeight,
+    //           decoration: BoxDecoration(
+    //             image: DecorationImage(
+    //               image: AssetImage(
+    //                   "assets/images/ub_flag.jpeg"
+    //               ),
+    //               fit: BoxFit.cover,
+    //             ),
+    //           ),
+    //           child: Container(
+    //             height: screenHeight,
+    //             width: screenWidth,
+    //             child: AnimatedOpacity(
+    //               opacity: timePassed ? 1.0 : 0.0,
+    //               duration: const Duration(milliseconds: 1500),
+    //               child: BackdropFilter(
+    //                 filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+    //                   child: Container(
+    //                           decoration: BoxDecoration(
+    //                             gradient: LinearGradient(
+    //                               begin: Alignment.topCenter,
+    //                               end: Alignment.bottomCenter,
+    //                               colors: [
+    //                                 Colors.white.withOpacity(0.3),
+    //                                 Colors.blue.shade600.withOpacity(0.9)
+    //                               ],
+    //                             ),
+    //                           ),
+    //                           child: primaryWidget,
+    //                         ),
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //         AnimatedPositioned(
+    //           duration: Duration(seconds: 1),
+    //           height: timePassed ? screenHeight * 0.35 : screenHeight,
+    //           top: timePassed ? screenHeight * 0.15 : 0.0,
+    //           curve: Curves.fastOutSlowIn,
+    //           child: Container(
+    //             width: screenWidth,
+    //             padding: timePassed ? EdgeInsets.symmetric(vertical: 10, horizontal: 0) : EdgeInsets.zero,
+    //             child: Center(
+    //               child: BounceIn(
+    //                 child: Image.asset("assets/images/ub-logo.png"),
+    //               ),
+    //             ),
+    //           ),
+    //         ),
+    //       ],
+    //     ),
+    //   ),
+    // );
   }
   Widget objects(){
     return Container(

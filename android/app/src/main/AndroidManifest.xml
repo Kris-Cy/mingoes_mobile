@@ -10,7 +10,7 @@
         </intent>
     </queries>
     <application
-        android:label="mingoes_mobile"
+        android:label="Mingoes Mobile"
         android:icon="@mipmap/ic_launcher">
 
         <meta-data android:name="com.google.android.geo.API_KEY" android:value="AIzaSyC5KJ3hSUJ8VBsvk0jYKe2jEraiwNuRpUY"/>
